@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Page from "./pages/index.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Page>
+        <Box
+          sx={{
+            width: 300,
+            height: 300,
+            bgcolor: "primary.dark",
+            "&:hover": {
+              backgroundColor: "primary.main",
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+        <Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
+          <Button>Save</Button>
+        </Box>
+        {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
+      </Page>
+    </React.Fragment>
   );
 }
 
