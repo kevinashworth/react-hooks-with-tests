@@ -1,31 +1,59 @@
 import * as React from "react";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Page from "./pages/index.jsx";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import GrabBag from "./pages/grab_bag";
+import Layout from "./components/page_with_layout";
+import Page from "./pages/index";
+import TestUseDebounce from "./pages/test_use_debounce";
+
+const theme = createTheme({
+  palette: {
+    primary: { main: "#F7931E" },
+  },
+});
 
 function App() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Page>
-        <Box
-          sx={{
-            width: 300,
-            height: 300,
-            bgcolor: "primary.dark",
-            "&:hover": {
-              backgroundColor: "primary.main",
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-        <Box component="span" sx={{ p: 2, border: "1px dashed grey" }}>
-          <Button>Save</Button>
-        </Box>
-        {/* <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} /> */}
-      </Page>
-    </React.Fragment>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Layout>
+          <Switch>
+            <Route path="/">
+              <Page />
+            </Route>
+            <Route path="/grab-bag">
+              <GrabBag />
+            </Route>
+            <Route path="/test-use-debounce">
+              <TestUseDebounce />
+            </Route>
+          </Switch>
+        </Layout>
+        {/* <Page> */}
+        {/* <nav>
+            <ul>
+              <li>
+                <Link to="/">Index (Page)</Link>
+              </li>
+              <li>
+                <Link to="/grab-bag">Grab Bag</Link>
+              </li>
+              <li>
+                <Link to="/layout">Layout</Link>
+              </li>
+              <li>
+                <Link to="/test-use-debounce">Test useDebounce</Link>
+              </li>
+            </ul>
+          </nav> */}
+        {/* </Page> */}
+      </ThemeProvider>
+    </Router>
   );
 }
 
